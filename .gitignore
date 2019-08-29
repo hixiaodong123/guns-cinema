@@ -33,4 +33,4 @@ hs_err_pid*
 .settings/
 
 
-guns/guns-core/src/main/resources/application-db.properties
+/guns/guns-core/src/main/resources/application-db.properties
