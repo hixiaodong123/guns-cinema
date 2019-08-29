@@ -32,4 +32,4 @@ hs_err_pid*
 .project
 .settings/
 
-\guns-core\src\main\resources\application-db.properties
+/guns-core/src/main/resources/application-db.properties
