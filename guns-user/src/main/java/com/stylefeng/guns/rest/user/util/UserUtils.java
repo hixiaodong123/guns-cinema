@@ -50,11 +50,11 @@ public class UserUtils
             //状态不为空,修改它
             mtimeUserT.setLifeState(Integer.parseInt(userInfoModel.getLifeState()));
         }
-        if (userInfoModel.getNickname()!=null)
-        {
+        //if (userInfoModel.getNickname()!=null)
+        //{
             //昵称不为空,修改它
             mtimeUserT.setNickName(userInfoModel.getNickname());
-        }
+        //}
         if (userInfoModel.getPhone()!=null)
         {
             //手机号不为空,修改它

@@ -101,23 +101,6 @@ public class MtimeUserT extends Model<MtimeUserT>
     {
     }
 
-    public MtimeUserT(Integer uuid, String userName, String nickName, Integer userSex, String birthday, String email, String userPhone, String address, String headUrl, String biography, Integer lifeState, Date beginTime, Date updateTime)
-    {
-        this.uuid = uuid;
-        this.userName = userName;
-        this.nickName = nickName;
-        this.userSex = userSex;
-        this.birthday = birthday;
-        this.email = email;
-        this.userPhone = userPhone;
-        this.address = address;
-        this.headUrl = headUrl;
-        this.biography = biography;
-        this.lifeState = lifeState;
-        this.beginTime = beginTime;
-        this.updateTime = updateTime;
-    }
-
     public Integer getUuid()
     {
         return uuid;
