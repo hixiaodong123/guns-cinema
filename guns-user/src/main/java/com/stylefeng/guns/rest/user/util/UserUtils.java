@@ -22,9 +22,6 @@ public class UserUtils
     {
         //将数据对象转换成UserInfoModel对象,并且返回这个对象即可
         return new UserInfoModel(mtimeUserT.getUuid(), mtimeUserT.getUserName(), mtimeUserT.getNickName(), mtimeUserT.getEmail(), mtimeUserT.getUserPhone(), mtimeUserT.getUserSex(), mtimeUserT.getBirthday(), "" + mtimeUserT.getLifeState(), mtimeUserT.getBiography(), mtimeUserT.getAddress(), mtimeUserT.getHeadUrl(), mtimeUserT.getBeginTime().getTime(), mtimeUserT.getUpdateTime().getTime());
-        //UserInfoModel userInfoModel = new UserInfoModel();
-        //BeanUtils.copyProperties(mtimeUserT, userInfoModel);
-        //return userInfoModel;
     }
 
     public static MtimeUserT userInfoModel2MtimeUserT(UserInfoModel userInfoModel)
@@ -57,12 +54,8 @@ public class UserUtils
         //修改时间设置为当前时间
         mtimeUserT.setUpdateTime(new Date());
         return mtimeUserT;
-        //return new MtimeUserT(userInfoModel.getUuid(), userInfoModel.getUsername(), userInfoModel.getNickname(), userInfoModel.getSex(), userInfoModel.getBirthday(), userInfoModel.getEmail(), userInfoModel.getPhone(), userInfoModel.getAddress(), userInfoModel.getHeadAddress(), userInfoModel.getBiography(), Integer.parseInt(userInfoModel.getLifeState()), getDate(userInfoModel.getBeginTime()), getDate(userInfoModel.getUpdateTime()));
+
     }
 
-    private static Date getDate(long time)
-    {
-        return new Date(time);
-    }
 
 }
