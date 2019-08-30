@@ -26,4 +26,5 @@ public interface UserServerAPI
     //更新用户信息
     UserInfoModel updateUserInfo(UserInfoModel userInfoModel);
 
+
 }

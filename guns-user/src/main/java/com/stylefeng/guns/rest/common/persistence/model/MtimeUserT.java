@@ -1,11 +1,14 @@
 package com.stylefeng.guns.rest.common.persistence.model;
 
 import com.baomidou.mybatisplus.enums.IdType;
+
 import java.util.Date;
+
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
 
 /**
@@ -17,7 +20,8 @@ import java.io.Serializable;
  * @since 2019-08-29
  */
 @TableName("mtime_user_t")
-public class MtimeUserT extends Model<MtimeUserT> {
+public class MtimeUserT extends Model<MtimeUserT>
+{
 
     private static final long serialVersionUID = 1L;
 
@@ -42,7 +46,7 @@ public class MtimeUserT extends Model<MtimeUserT> {
     @TableField("nick_name")
     private String nickName;
     /**
-     * 用户性别 0-男，1-女
+     * 用户性别 0-男，1-女,注册时默认是3-不显示性别
      */
     @TableField("user_sex")
     private Integer userSex;
@@ -73,7 +77,7 @@ public class MtimeUserT extends Model<MtimeUserT> {
      */
     private String biography;
     /**
-     * 生活状态 0-单身，1-热恋中，2-已婚，3-为人父母
+     * 生活状态 0-单身，1-热恋中，2-已婚，3-为人父母,注册时默认是4-不显示状态
      */
     @TableField("life_state")
     private Integer lifeState;
@@ -97,141 +101,172 @@ public class MtimeUserT extends Model<MtimeUserT> {
     {
     }
 
+    public MtimeUserT(Integer uuid, String userName, String nickName, Integer userSex, String birthday, String email, String userPhone, String address, String headUrl, String biography, Integer lifeState, Date beginTime, Date updateTime)
+    {
+        this.uuid = uuid;
+        this.userName = userName;
+        this.nickName = nickName;
+        this.userSex = userSex;
+        this.birthday = birthday;
+        this.email = email;
+        this.userPhone = userPhone;
+        this.address = address;
+        this.headUrl = headUrl;
+        this.biography = biography;
+        this.lifeState = lifeState;
+        this.beginTime = beginTime;
+        this.updateTime = updateTime;
+    }
 
-    public Integer getUuid() {
+    public Integer getUuid()
+    {
         return uuid;
     }
 
-    public void setUuid(Integer uuid) {
+    public void setUuid(Integer uuid)
+    {
         this.uuid = uuid;
     }
 
-    public String getUserName() {
+    public String getUserName()
+    {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    public void setUserName(String userName)
+    {
         this.userName = userName;
     }
 
-    public String getUserPwd() {
+    public String getUserPwd()
+    {
         return userPwd;
     }
 
-    public void setUserPwd(String userPwd) {
+    public void setUserPwd(String userPwd)
+    {
         this.userPwd = userPwd;
     }
 
-    public String getNickName() {
+    public String getNickName()
+    {
         return nickName;
     }
 
-    public void setNickName(String nickName) {
+    public void setNickName(String nickName)
+    {
         this.nickName = nickName;
     }
 
-    public Integer getUserSex() {
+    public Integer getUserSex()
+    {
         return userSex;
     }
 
-    public void setUserSex(Integer userSex) {
+    public void setUserSex(Integer userSex)
+    {
         this.userSex = userSex;
     }
 
-    public String getBirthday() {
+    public String getBirthday()
+    {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(String birthday)
+    {
         this.birthday = birthday;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email)
+    {
         this.email = email;
     }
 
-    public String getUserPhone() {
+    public String getUserPhone()
+    {
         return userPhone;
     }
 
-    public void setUserPhone(String userPhone) {
+    public void setUserPhone(String userPhone)
+    {
         this.userPhone = userPhone;
     }
 
-    public String getAddress() {
+    public String getAddress()
+    {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(String address)
+    {
         this.address = address;
     }
 
-    public String getHeadUrl() {
+    public String getHeadUrl()
+    {
         return headUrl;
     }
 
-    public void setHeadUrl(String headUrl) {
+    public void setHeadUrl(String headUrl)
+    {
         this.headUrl = headUrl;
     }
 
-    public String getBiography() {
+    public String getBiography()
+    {
         return biography;
     }
 
-    public void setBiography(String biography) {
+    public void setBiography(String biography)
+    {
         this.biography = biography;
     }
 
-    public Integer getLifeState() {
+    public Integer getLifeState()
+    {
         return lifeState;
     }
 
-    public void setLifeState(Integer lifeState) {
+    public void setLifeState(Integer lifeState)
+    {
         this.lifeState = lifeState;
     }
 
-    public Date getBeginTime() {
+    public Date getBeginTime()
+    {
         return beginTime;
     }
 
-    public void setBeginTime(Date beginTime) {
+    public void setBeginTime(Date beginTime)
+    {
         this.beginTime = beginTime;
     }
 
-    public Date getUpdateTime() {
+    public Date getUpdateTime()
+    {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Date updateTime)
+    {
         this.updateTime = updateTime;
     }
 
     @Override
-    protected Serializable pkVal() {
+    protected Serializable pkVal()
+    {
         return this.uuid;
     }
 
     @Override
-    public String toString() {
-        return "MtimeUserT{" +
-        "uuid=" + uuid +
-        ", userName=" + userName +
-        ", userPwd=" + userPwd +
-        ", nickName=" + nickName +
-        ", userSex=" + userSex +
-        ", birthday=" + birthday +
-        ", email=" + email +
-        ", userPhone=" + userPhone +
-        ", address=" + address +
-        ", headUrl=" + headUrl +
-        ", biography=" + biography +
-        ", lifeState=" + lifeState +
-        ", beginTime=" + beginTime +
-        ", updateTime=" + updateTime +
-        "}";
+    public String toString()
+    {
+        return "MtimeUserT{" + "uuid=" + uuid + ", userName=" + userName + ", userPwd=" + userPwd + ", nickName=" + nickName + ", userSex=" + userSex + ", birthday=" + birthday + ", email=" + email + ", userPhone=" + userPhone + ", address=" + address + ", headUrl=" + headUrl + ", biography=" + biography + ", lifeState=" + lifeState + ", beginTime=" + beginTime + ", updateTime=" + updateTime + "}";
     }
 }

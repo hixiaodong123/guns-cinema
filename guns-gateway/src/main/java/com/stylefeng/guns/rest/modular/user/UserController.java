@@ -3,8 +3,11 @@ package com.stylefeng.guns.rest.modular.user;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.stylefeng.guns.api.order.OrderServiceAPI;
 import com.stylefeng.guns.api.user.UserServerAPI;
+import com.stylefeng.guns.api.user.vo.UserInfoModel;
 import com.stylefeng.guns.api.user.vo.UserRegisterModel;
+import com.stylefeng.guns.rest.common.CurrentUser;
 import com.stylefeng.guns.rest.modular.vo.ResponseVO;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +25,6 @@ public class UserController
 
     @Reference(interfaceClass = UserServerAPI.class)
     private UserServerAPI userServerAPI;
-
-    @Reference(interfaceClass = OrderServiceAPI.class)
-    private OrderServiceAPI orderServiceAPI;
 
     @PostMapping("/register")
     public ResponseVO register(UserRegisterModel userRegisterModel)
@@ -77,7 +77,8 @@ public class UserController
                 //用户不存在
                 return ResponseVO.success("验证成功,用户名不存在!");
             }
-            else {
+            else
+            {
                 //用户名存在
                 return ResponseVO.serviceFail("用户名已存在!");
             }
@@ -89,8 +90,90 @@ public class UserController
             return ResponseVO.serviceFail("用户名不能为空!");
 
         }
-
     }
+
+    @GetMapping("/logout")
+    public ResponseVO logout()
+    {
+        return ResponseVO.success("成功退出!");
+    }
+
+    @GetMapping("/getUserInfo")
+    public ResponseVO getUserInfo()
+    {
+        //获取当前登录用户的userId
+        String userId = CurrentUser.getUserId();
+        if (userId != null && userId.trim().length() > 0)
+        {
+            //能够获取id,说明已登录
+            //根据当前登录对象的userId调用service方法
+            UserInfoModel userInfo = null;
+            try
+            {
+                userInfo = userServerAPI.getUserInfo(Integer.parseInt(userId));
+                return ResponseVO.success(userInfo);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                return ResponseVO.systemFail("系统异常,请联系管理员");
+            }
+        }
+        else
+        {
+            //未登录,提醒用户登录
+            return ResponseVO.serviceFail("查询失败,用户未登录!");
+        }
+    }
+
+    @PostMapping("/updateUserInfo")
+    public ResponseVO updateUserInfo(UserInfoModel userInfoModel)
+    {
+        //获取当前登录用户的userId
+        String userId = CurrentUser.getUserId();
+        if (userId != null && userId.trim().length() > 0)
+        {
+            //能够获取id,说明已登录
+            int loginId = Integer.parseInt(userId);
+            //判断登录的id是否是要修改用户信息的id
+            if (loginId == userInfoModel.getUuid())
+            {
+                //能够修改用户信息
+                UserInfoModel updateUserInfo = null;
+                try
+                {
+                    updateUserInfo = userServerAPI.updateUserInfo(userInfoModel);
+                    if (updateUserInfo != null)
+                    {
+                        //说明修改成功了!
+                        return ResponseVO.success(updateUserInfo);
+                    }
+                    else
+                    {
+                        //说明修改失败了
+                        return ResponseVO.serviceFail("修改用户信息失败了!");
+                    }
+                }
+                catch (Exception e)
+                {
+                    //出错了
+                    e.printStackTrace();
+                    return ResponseVO.systemFail("系统系统,请联系管理员!");
+                }
+            }
+            else
+            {
+                //无法修改别人的用户信息
+                return ResponseVO.serviceFail("您不能修改别人的信息!");
+            }
+        }
+        else
+        {
+            //未登录,提醒用户登录
+            return ResponseVO.serviceFail("用户未登录!");
+        }
+    }
+
 
 }
 
