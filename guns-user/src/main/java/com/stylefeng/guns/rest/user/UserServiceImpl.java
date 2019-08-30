@@ -1,7 +1,7 @@
 package com.stylefeng.guns.rest.user;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.stylefeng.guns.api.user.UserServerAPI;
+import com.stylefeng.guns.api.user.UserServiceAPI;
 import com.stylefeng.guns.api.user.vo.UserInfoModel;
 import com.stylefeng.guns.api.user.vo.UserRegisterModel;
 import com.stylefeng.guns.rest.common.persistence.dao.MtimeUserTMapper;
@@ -23,8 +23,8 @@ import java.util.Date;
 
 
 @Component
-@Service(interfaceClass = UserServerAPI.class)
-public class UserServerImpl implements UserServerAPI
+@Service(interfaceClass = UserServiceAPI.class)
+public class UserServiceImpl implements UserServiceAPI
 {
     @Autowired
     private MtimeUserTMapper mtimeUserTMapper;
