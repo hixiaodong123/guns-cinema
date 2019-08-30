@@ -1,6 +1,7 @@
 package com.stylefeng.guns.api.user.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @description: User实体类
@@ -16,7 +17,7 @@ public class UserInfoModel implements Serializable
     private String nickname;
     private String email;
     private String phone;
-    private int sex;
+    private Integer sex;
     private String birthday;
     private String lifeState;
     private String biography;
@@ -25,6 +26,26 @@ public class UserInfoModel implements Serializable
     private long beginTime;
     private long updateTime;
 
+    public UserInfoModel()
+    {
+    }
+
+    public UserInfoModel(Integer uuid, String username, String nickname, String email, String phone, Integer sex, String birthday, String lifeState, String biography, String address, String headAddress, long beginTime, long updateTime)
+    {
+        this.uuid = uuid;
+        this.username = username;
+        this.nickname = nickname;
+        this.email = email;
+        this.phone = phone;
+        this.sex = sex;
+        this.birthday = birthday;
+        this.lifeState = lifeState;
+        this.biography = biography;
+        this.address = address;
+        this.headAddress = headAddress;
+        this.beginTime = beginTime;
+        this.updateTime = updateTime;
+    }
 
     public Integer getUuid()
     {
@@ -76,7 +97,7 @@ public class UserInfoModel implements Serializable
         this.phone = phone;
     }
 
-    public int getSex()
+    public Integer getSex()
     {
         return sex;
     }

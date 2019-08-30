@@ -6,6 +6,7 @@ import com.stylefeng.guns.api.user.vo.UserInfoModel;
 import com.stylefeng.guns.api.user.vo.UserRegisterModel;
 import com.stylefeng.guns.rest.common.persistence.dao.MtimeUserTMapper;
 import com.stylefeng.guns.rest.common.persistence.model.MtimeUserT;
+import com.stylefeng.guns.rest.user.util.UserUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -79,6 +80,12 @@ public class UserServerImpl implements UserServerAPI
         mtimeUserT.setBeginTime(date);
         mtimeUserT.setUpdateTime(date);
 
+        //将两个int类型赋值
+        //生活状态-4-前端不显示
+        //性别-2-前端不显示
+        mtimeUserT.setLifeState(4);
+        mtimeUserT.setUserSex(2);
+
         //存入数据库
         try
         {
@@ -112,16 +119,37 @@ public class UserServerImpl implements UserServerAPI
         }
     }
 
+
     @Override
     public UserInfoModel getUserInfo(int uuid)
     {
-        return null;
+        //通过获取的UUID查询出对应的数据库对象MtimeUserT
+        MtimeUserT mtimeUserT = mtimeUserTMapper.selectById(uuid);
+        //将数据对象转换成UserInfoModel对象,并且返回这个对象即可
+        return UserUtils.mtimeUserT2UserInfoModel(mtimeUserT);
     }
 
     @Override
     public UserInfoModel updateUserInfo(UserInfoModel userInfoModel)
     {
-        return null;
+
+        //将从前端获取的userInfoModel对象转换成数据库中的mtimeUserT对象
+        MtimeUserT mtimeUserT = UserUtils.userInfoModel2MtimeUserT(userInfoModel);
+        //更新
+        Integer integer = mtimeUserTMapper.updateById(mtimeUserT);
+
+        if (integer > 0)
+        {
+            //说明更新成功了
+            //通过id将更新后的用户信息查出来
+            return getUserInfo(mtimeUserT.getUuid());
+        }
+        else
+        {
+            //说明更新未成功
+            //将未更新的用户信息返回去
+            return userInfoModel;
+        }
     }
 }
 
