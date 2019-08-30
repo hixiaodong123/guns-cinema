@@ -20,14 +20,24 @@ public class UserUtils
 
     public static UserInfoModel mtimeUserT2UserInfoModel(MtimeUserT mtimeUserT)
     {
+
+        /**
+         * 该对象是数据库获取的,由于我们都设置了数据库字段的初始值,所以不用担心空指针
+         */
+
         //将数据对象转换成UserInfoModel对象,并且返回这个对象即可
         return new UserInfoModel(mtimeUserT.getUuid(), mtimeUserT.getUserName(), mtimeUserT.getNickName(), mtimeUserT.getEmail(), mtimeUserT.getUserPhone(), mtimeUserT.getUserSex(), mtimeUserT.getBirthday(), "" + mtimeUserT.getLifeState(), mtimeUserT.getBiography(), mtimeUserT.getAddress(), mtimeUserT.getHeadUrl(), mtimeUserT.getBeginTime().getTime(), mtimeUserT.getUpdateTime().getTime());
     }
 
     public static MtimeUserT userInfoModel2MtimeUserT(UserInfoModel userInfoModel)
     {
-        //将数据对象转换成UserInfoModel对象,并且返回这个对象即可
 
+        /**
+         * 该对象是从前端获取的,我们无法控制是否为空,所以使用BeanUtils工具类,无法自动填充的,
+         *      也要先判空再赋值,避免空指针异常
+         */
+
+        //将数据对象转换成UserInfoModel对象,并且返回这个对象即可
         MtimeUserT mtimeUserT = new MtimeUserT();
         BeanUtils.copyProperties(userInfoModel, mtimeUserT);
         if (userInfoModel.getSex()!=null)
