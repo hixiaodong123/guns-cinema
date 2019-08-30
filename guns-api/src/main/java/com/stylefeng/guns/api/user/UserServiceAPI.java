@@ -9,7 +9,7 @@ import com.stylefeng.guns.api.user.vo.UserRegisterModel;
  * @create: 2019-08-29 11:58
  **/
 
-public interface UserServerAPI
+public interface UserServiceAPI
 {
     //登录方法,返回user的id
     int login(String username, String password);

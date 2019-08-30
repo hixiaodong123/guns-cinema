@@ -1,8 +1,7 @@
 package com.stylefeng.guns.rest.modular.user;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.stylefeng.guns.api.order.OrderServiceAPI;
-import com.stylefeng.guns.api.user.UserServerAPI;
+import com.stylefeng.guns.api.user.UserServiceAPI;
 import com.stylefeng.guns.api.user.vo.UserInfoModel;
 import com.stylefeng.guns.api.user.vo.UserRegisterModel;
 import com.stylefeng.guns.rest.common.CurrentUser;
@@ -23,8 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController
 {
 
-    @Reference(interfaceClass = UserServerAPI.class)
-    private UserServerAPI userServerAPI;
+    @Reference(interfaceClass = UserServiceAPI.class)
+    private UserServiceAPI userServiceAPI;
 
     @PostMapping("/register")
     public ResponseVO register(UserRegisterModel userRegisterModel)
@@ -42,7 +41,7 @@ public class UserController
         //开始注册
         try
         {
-            boolean success = userServerAPI.register(userRegisterModel);
+            boolean success = userServiceAPI.register(userRegisterModel);
             if (success)
             {
                 //注册成功
@@ -71,7 +70,7 @@ public class UserController
         if (username != null && username.trim().length() > 0)
         {
             //不为空,判断
-            boolean flag = userServerAPI.checkUsername(username);
+            boolean flag = userServiceAPI.checkUsername(username);
             if (flag)
             {
                 //用户不存在
@@ -110,7 +109,7 @@ public class UserController
             UserInfoModel userInfo = null;
             try
             {
-                userInfo = userServerAPI.getUserInfo(Integer.parseInt(userId));
+                userInfo = userServiceAPI.getUserInfo(Integer.parseInt(userId));
                 return ResponseVO.success(userInfo);
             }
             catch (Exception e)
@@ -142,7 +141,7 @@ public class UserController
                 UserInfoModel updateUserInfo = null;
                 try
                 {
-                    updateUserInfo = userServerAPI.updateUserInfo(userInfoModel);
+                    updateUserInfo = userServiceAPI.updateUserInfo(userInfoModel);
                     if (updateUserInfo != null)
                     {
                         //说明修改成功了!

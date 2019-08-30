@@ -1,21 +1,14 @@
 package com.stylefeng.guns.rest.modular.auth.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.stylefeng.guns.api.user.UserServerAPI;
-import com.stylefeng.guns.core.exception.GunsException;
-import com.stylefeng.guns.rest.common.exception.BizExceptionEnum;
+import com.stylefeng.guns.api.user.UserServiceAPI;
 import com.stylefeng.guns.rest.modular.auth.controller.dto.AuthRequest;
 import com.stylefeng.guns.rest.modular.auth.controller.dto.AuthResponse;
 import com.stylefeng.guns.rest.modular.auth.util.JwtTokenUtil;
-import com.stylefeng.guns.rest.modular.auth.validator.IReqValidator;
 import com.stylefeng.guns.rest.modular.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 /**
  * 请求验证的
@@ -27,8 +20,8 @@ import javax.annotation.Resource;
 public class AuthController
 {
 
-    @Reference(interfaceClass = UserServerAPI.class)
-    private UserServerAPI userServerAPI;
+    @Reference(interfaceClass = UserServiceAPI.class)
+    private UserServiceAPI userServiceAPI;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -54,7 +47,7 @@ public class AuthController
 
 
         //自定义密码验证机制
-        int userId = userServerAPI.login(authRequest.getUserName(), authRequest.getPassword());
+        int userId = userServiceAPI.login(authRequest.getUserName(), authRequest.getPassword());
 
         if (userId == 0)
         {
