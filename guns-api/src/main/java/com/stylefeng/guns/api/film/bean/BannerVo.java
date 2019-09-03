@@ -6,7 +6,8 @@ import lombok.Data;
 import java.io.Serializable;
 @Data
 public class BannerVo  implements Serializable{
-    private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 1420856063636586876L;
     private int bannerId;
     private String bannerAddress;
     private String bannerUrl;

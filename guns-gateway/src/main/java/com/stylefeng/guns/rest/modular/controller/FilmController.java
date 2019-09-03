@@ -5,13 +5,14 @@ import com.stylefeng.guns.api.film.FilmServiceAPI;
 import com.stylefeng.guns.api.film.bean.FilmIndexVo;
 import com.stylefeng.guns.api.film.bean.SearchVo;
 import com.stylefeng.guns.rest.modular.vo.ResponseVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/film")
 public class FilmController {
-    @Reference(interfaceClass = FilmServiceAPI.class)
+    @Reference(interfaceClass = FilmServiceAPI.class,check = false)
     FilmServiceAPI filmServiceAPI;
     @RequestMapping("/getIndex")
     public ResponseVO getIndex(){

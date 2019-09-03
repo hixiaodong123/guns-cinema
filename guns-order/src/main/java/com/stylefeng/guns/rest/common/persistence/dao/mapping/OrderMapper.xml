@@ -16,5 +16,7 @@
         <result column="order_user" property="orderUser" />
         <result column="order_status" property="orderStatus" />
     </resultMap>
-
+<select id="querySeats" >
+    select  h.seat_address  from mtime_hall_dict_t h, mtime_field_t f where h.uuid=f.hall_id and f.uuid=${id}
+</select>
 </mapper>

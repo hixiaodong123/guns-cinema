@@ -28,7 +28,11 @@ mybatis-plus:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
 
 spring:
-
+#  redis:
+#   database: 0
+#   host: localhost
+#   password:
+#   port: 6379
   profiles:
     active: db
 

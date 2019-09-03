@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController
 {
 
-    @Reference(interfaceClass = UserServiceAPI.class)
+    @Reference(interfaceClass = UserServiceAPI.class,check = false)
     private UserServiceAPI userServiceAPI;
 
     @Autowired

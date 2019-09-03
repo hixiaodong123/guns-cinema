@@ -9,4 +9,7 @@
         <result column="banner_url" property="bannerUrl" />
         <result column="is_valid" property="isValid" />
     </resultMap>
+    <select id="queryAll" resultMap="BaseResultMap">
+        select * from mtime_banner_t
+    </select>
 </mapper>

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController
 {
 
-    @Reference(interfaceClass = UserServiceAPI.class)
+    @Reference(interfaceClass = UserServiceAPI.class,check = false)
     private UserServiceAPI userServiceAPI;
 
     @PostMapping("/register")

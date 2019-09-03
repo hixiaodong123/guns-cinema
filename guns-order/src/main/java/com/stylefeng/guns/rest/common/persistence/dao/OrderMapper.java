@@ -3,6 +3,7 @@ package com.stylefeng.guns.rest.common.persistence.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.stylefeng.guns.rest.common.persistence.model.Order;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -15,4 +16,5 @@ import com.stylefeng.guns.rest.common.persistence.model.Order;
 public interface OrderMapper extends BaseMapper<Order>
 {
 
+    String querySeats(@Param("id") String fieldId);
 }
