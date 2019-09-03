@@ -45,7 +45,7 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
     }
 
     protected void configTemplate(Template template) {
-        template.binding("controller", super.controllerConfig);
+        template.binding("promo", super.controllerConfig);
         template.binding("context", super.contextConfig);
         template.binding("dao", super.daoConfig);
         template.binding("service", super.serviceConfig);

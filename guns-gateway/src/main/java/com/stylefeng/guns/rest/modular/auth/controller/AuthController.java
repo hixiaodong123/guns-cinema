@@ -1,7 +1,7 @@
 package com.stylefeng.guns.rest.modular.auth.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.stylefeng.guns.api.user.UserServerAPI;
+import com.stylefeng.guns.api.user.UserServiceAPI;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.rest.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.rest.modular.auth.controller.dto.AuthRequest;
@@ -27,8 +27,8 @@ import javax.annotation.Resource;
 public class AuthController
 {
 
-    @Reference(interfaceClass = UserServerAPI.class,check = false)
-    private UserServerAPI userServerAPI;
+    @Reference(interfaceClass = UserServiceAPI.class,check = false)
+    private UserServiceAPI userServiceAPI;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -54,7 +54,7 @@ public class AuthController
 
 
         //自定义密码验证机制
-        int userId = userServerAPI.login(authRequest.getUserName(), authRequest.getPassword());
+        int userId = userServiceAPI.login(authRequest.getUserName(), authRequest.getPassword());
 
         if (userId == 0)
         {

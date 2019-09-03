@@ -24,7 +24,7 @@ public class DefaultTemplateFactory {
      */
     public static List<Map<String,Object>> getDefaultTemplates(){
         ArrayList<Map<String, Object>> templates = new ArrayList<>();
-        templates.add(create("controllerSwitch","controller-控制器模板"));
+        templates.add(create("controllerSwitch","promo-控制器模板"));
         templates.add(create("entitySwitch","entity-实体模板"));
         templates.add(create("serviceSwitch","service-service模板"));
         templates.add(create("daoSwitch","dao-dao模板"));

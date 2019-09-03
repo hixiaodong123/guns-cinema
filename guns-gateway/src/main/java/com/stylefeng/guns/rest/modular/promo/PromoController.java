@@ -1,10 +1,9 @@
-package com.stylefeng.guns.rest.modular.controller;
+package com.stylefeng.guns.rest.modular.promo;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.stylefeng.guns.api.promo.IMtimePromoService;
 import com.stylefeng.guns.api.promo.PromoVo;
 import com.stylefeng.guns.rest.modular.vo.ResponseVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

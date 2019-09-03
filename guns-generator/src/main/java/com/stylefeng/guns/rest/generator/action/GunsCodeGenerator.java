@@ -4,7 +4,7 @@ package com.stylefeng.guns.rest.generator.action;
 import com.stylefeng.guns.rest.generator.action.config.GunsGeneratorConfig;
 
 /**
- * 代码生成器,可以生成实体,dao,service,controller,html,js
+ * 代码生成器,可以生成实体,dao,service,promo,html,js
  *
  * @author stylefeng
  * @Date 2017/5/21 12:38
