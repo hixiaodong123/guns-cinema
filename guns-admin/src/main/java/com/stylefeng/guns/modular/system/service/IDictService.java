@@ -43,6 +43,6 @@ public interface IDictService extends IService<Dict> {
     /**
      * 查询字典列表
      */
-    List<Map<String, Object>> list(@Param("condition") String conditiion);
+    List<Map<String, Object>> list(@Param("film") String conditiion);
 
 }

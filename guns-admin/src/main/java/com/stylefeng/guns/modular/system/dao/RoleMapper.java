@@ -24,7 +24,7 @@ public interface RoleMapper extends BaseMapper<Role> {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    List<Map<String, Object>> selectRoles(@Param("condition") String condition);
+    List<Map<String, Object>> selectRoles(@Param("film") String condition);
 
     /**
      * 删除某个角色的所有权限

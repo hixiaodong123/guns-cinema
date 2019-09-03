@@ -81,7 +81,7 @@ Expense.openAddExpense = function () {
  */
 Expense.search = function () {
     var queryData = {};
-    queryData['condition'] = $("#condition").val();
+    queryData['condition'] = $("#film").val();
     Expense.table.refresh({query: queryData});
 };
 

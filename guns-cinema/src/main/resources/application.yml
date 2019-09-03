@@ -47,7 +47,7 @@ spring:
     protocol:
       name: dubbo
       port: 20884
-
+#      accepts: 10
 
 logging:
   level.root: info

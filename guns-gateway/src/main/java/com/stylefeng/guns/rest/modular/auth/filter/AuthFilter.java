@@ -55,7 +55,7 @@ public class AuthFilter extends OncePerRequestFilter
             {
                 for (String url : urls)
                 {
-                    if (request.getServletPath().equals(url))
+                    if (request.getServletPath().contains(url))
                     {
                         //放行
                         chain.doFilter(request, response);

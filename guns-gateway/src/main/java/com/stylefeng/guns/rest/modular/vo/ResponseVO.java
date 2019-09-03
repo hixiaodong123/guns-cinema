@@ -1,5 +1,9 @@
 package com.stylefeng.guns.rest.modular.vo;
 
+import com.stylefeng.guns.api.cinema.vo.CinemaVO;
+
+import java.util.List;
+
 /**
  * @description: 接口服务返回值
  * @author: LiTe
@@ -18,10 +22,57 @@ public class ResponseVO<T>
     //返回的数据实体
     private T data;
 
+    //影片模块用
+    private String imgPre;
+    private int nowPage;
+    private int totalPage;
+
+    public static<M> ResponseVO success(int nowPage,int totalPage,String imgPre,M m){
+        ResponseVO responseVO = new ResponseVO();
+        responseVO.setStatus(0);
+        responseVO.setData(m);
+        responseVO.setImgPre(imgPre);
+        responseVO.setTotalPage(totalPage);
+        responseVO.setNowPage(nowPage);
+
+        return responseVO;
+    }
+
+    public int getNowPage()
+    {
+        return nowPage;
+    }
+
+    public void setNowPage(int nowPage)
+    {
+        this.nowPage = nowPage;
+    }
+
+    public int getTotalPage()
+    {
+        return totalPage;
+    }
+
+    public void setTotalPage(int totalPage)
+    {
+        this.totalPage = totalPage;
+    }
+
+    public String getImgPre()
+    {
+        return imgPre;
+    }
+
+    public void setImgPre(String imgPre)
+    {
+        this.imgPre = imgPre;
+    }
+
     //私有化,不允许外部实例化
     private ResponseVO()
     {
     }
+
 
     public int getStatus()
     {
@@ -61,12 +112,35 @@ public class ResponseVO<T>
         responseVO.setData(t);
         return responseVO;
     }
+
     //注册成功
     public static <T> ResponseVO success(String message)
     {
         ResponseVO responseVO = new ResponseVO();
         responseVO.setStatus(0);
         responseVO.setMsg(message);
+        return responseVO;
+    }
+
+    //影片首页成功
+    public static <T> ResponseVO success(String imgPre, T t)
+    {
+        ResponseVO responseVO = new ResponseVO();
+        responseVO.setStatus(0);
+        responseVO.setImgPre(imgPre);
+        responseVO.setData(t);
+        return responseVO;
+    }
+
+    //影片条件查询成功
+    public static <T> ResponseVO success(String imgPre, T t, int nowPage, int totalPage)
+    {
+        ResponseVO responseVO = new ResponseVO();
+        responseVO.setStatus(0);
+        responseVO.setImgPre(imgPre);
+        responseVO.setData(t);
+        responseVO.setNowPage(nowPage);
+        responseVO.setTotalPage(totalPage);
         return responseVO;
     }
 

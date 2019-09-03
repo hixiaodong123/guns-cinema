@@ -65,7 +65,7 @@ Process.unPass = function (id) {
  */
 Process.search = function () {
     var queryData = {};
-    queryData['condition'] = $("#condition").val();
+    queryData['condition'] = $("#film").val();
     Process.table.refresh({query: queryData});
 };
 

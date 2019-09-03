@@ -27,7 +27,7 @@ import javax.annotation.Resource;
 public class AuthController
 {
 
-    @Reference(interfaceClass = UserServerAPI.class)
+    @Reference(interfaceClass = UserServerAPI.class,check = false)
     private UserServerAPI userServerAPI;
 
     @Autowired

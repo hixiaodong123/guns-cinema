@@ -94,7 +94,7 @@ Notice.delete = function () {
  */
 Notice.search = function () {
     var queryData = {};
-    queryData['condition'] = $("#condition").val();
+    queryData['condition'] = $("#film").val();
     Notice.table.refresh({query: queryData});
 };
 

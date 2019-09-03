@@ -93,7 +93,7 @@ Dept.delete = function () {
  */
 Dept.search = function () {
     var queryData = {};
-    queryData['condition'] = $("#condition").val();
+    queryData['condition'] = $("#film").val();
     Dept.table.refresh({query: queryData});
 };
 

@@ -1,0 +1,80 @@
+package com.stylefeng.guns.api.cinema.vo;
+
+import java.io.Serializable;
+
+public class FilmFieldVO implements Serializable
+{
+
+    private static final long serialVersionUID = 788410416417884336L;
+    private String fieldId;
+    private String beginTime;
+    private String endTime;
+    private String language;
+    private String hallName;
+    private String price;
+
+    public static long getSerialVersionUID()
+    {
+        return serialVersionUID;
+    }
+
+    public String getFieldId()
+    {
+        return fieldId;
+    }
+
+    public void setFieldId(String fieldId)
+    {
+        this.fieldId = fieldId;
+    }
+
+    public String getBeginTime()
+    {
+        return beginTime;
+    }
+
+    public void setBeginTime(String beginTime)
+    {
+        this.beginTime = beginTime;
+    }
+
+    public String getEndTime()
+    {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime)
+    {
+        this.endTime = endTime;
+    }
+
+    public String getLanguage()
+    {
+        return language;
+    }
+
+    public void setLanguage(String language)
+    {
+        this.language = language;
+    }
+
+    public String getHallName()
+    {
+        return hallName;
+    }
+
+    public void setHallName(String hallName)
+    {
+        this.hallName = hallName;
+    }
+
+    public String getPrice()
+    {
+        return price;
+    }
+
+    public void setPrice(String price)
+    {
+        this.price = price;
+    }
+}

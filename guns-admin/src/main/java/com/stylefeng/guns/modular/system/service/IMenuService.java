@@ -39,7 +39,7 @@ public interface IMenuService extends IService<Menu> {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    List<Map<String, Object>> selectMenus(@Param("condition") String condition, @Param("level") String level);
+    List<Map<String, Object>> selectMenus(@Param("film") String condition, @Param("level") String level);
 
     /**
      * 根据条件查询菜单

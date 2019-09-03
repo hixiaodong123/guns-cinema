@@ -29,5 +29,5 @@ public interface IDeptService extends IService<Dept> {
     /**
      * 获取所有部门列表
      */
-    List<Map<String, Object>> list(@Param("condition") String condition);
+    List<Map<String, Object>> list(@Param("film") String condition);
 }
