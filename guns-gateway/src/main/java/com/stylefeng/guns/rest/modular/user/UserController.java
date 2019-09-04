@@ -94,6 +94,8 @@ public class UserController
     @GetMapping("/logout")
     public ResponseVO logout()
     {
+        //销毁
+        CurrentUser.destroy();
         return ResponseVO.success("成功退出!");
     }
 

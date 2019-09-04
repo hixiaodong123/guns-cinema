@@ -53,15 +53,28 @@
         <dubbo.version>2.0.0</dubbo.version>
         <zookeeper.version>0.11</zookeeper.version>
         <lombok.version>1.18.8</lombok.version>
+        <jedis.version>2.9.0</jedis.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+            </dependency>
+
             <!-- lombok 可以通过注解省去写getter和setter方法,简化代码 -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
             </dependency>
 
             <dependency>

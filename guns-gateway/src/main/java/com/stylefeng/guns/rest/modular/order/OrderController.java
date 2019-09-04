@@ -9,6 +9,7 @@ import com.stylefeng.guns.api.order.vo.OrderVO;
 import com.stylefeng.guns.core.util.TokenBucket;
 import com.stylefeng.guns.rest.common.CurrentUser;
 import com.stylefeng.guns.rest.modular.vo.ResponseVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,18 +18,28 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping(value = "/order/")
 public class OrderController
 {
 
     private static TokenBucket tokenBucket = new TokenBucket();
+    private static final String IMG_PRE="http://img.meetingshop.cn/";
 
     @Reference(
             interfaceClass = OrderServiceAPI.class,
             check = false,
             group = "order2018")
+    private OrderServiceAPI orderServiceAPI2018;
+
+
+    @Reference(
+            interfaceClass = OrderServiceAPI.class,
+            check = false,
+            group = "default")
     private OrderServiceAPI orderServiceAPI;
+
 
 
     @Reference(
@@ -38,35 +49,31 @@ public class OrderController
     private OrderServiceAPI orderServiceAPI2017;
 
 
-    public ResponseVO error(Integer fieldId, String soldSeats, String seatsName){
+    public ResponseVO error(Integer fieldId,String soldSeats,String seatsName){
         return ResponseVO.serviceFail("抱歉，下单的人太多了，请稍后重试");
     }
 
     // 购票
-
-/*
+    /*
         信号量隔离
         线程池隔离
         线程切换
-
-*/
-
-
+     */
     @HystrixCommand(fallbackMethod = "error", commandProperties = {
-        @HystrixProperty(name = "execution.isolation.strategy", value = "THREAD"),
-        @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "4000"),
-        @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
-        @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50")},
-        threadPoolProperties = {
-                @HystrixProperty(name = "coreSize", value = "1"),
-                @HystrixProperty(name = "maxQueueSize", value = "10"),
-                @HystrixProperty(name = "keepAliveTimeMinutes", value = "1000"),
-                @HystrixProperty(name = "queueSizeRejectionThreshold", value = "8"),
-                @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "12"),
-                @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "1500")
-        })
+            @HystrixProperty(name = "execution.isolation.strategy", value = "THREAD"),
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "4000"),
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50")},
+            threadPoolProperties = {
+                    @HystrixProperty(name = "coreSize", value = "1"),
+                    @HystrixProperty(name = "maxQueueSize", value = "10"),
+                    @HystrixProperty(name = "keepAliveTimeMinutes", value = "1000"),
+                    @HystrixProperty(name = "queueSizeRejectionThreshold", value = "8"),
+                    @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "12"),
+                    @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "1500")
+            })
     @RequestMapping(value = "buyTickets",method = RequestMethod.POST)
-    public ResponseVO buyTickets(Integer fieldId, String soldSeats, String seatsName){
+    public ResponseVO buyTickets(Integer fieldId,String soldSeats,String seatsName){
 
         if(tokenBucket.getToken()){
             // 验证售出的票是否为真
@@ -84,8 +91,7 @@ public class OrderController
                 }
                 OrderVO orderVO = orderServiceAPI.saveOrderInfo(fieldId,soldSeats,seatsName,Integer.parseInt(userId));
                 if(orderVO == null){
-                    //log.error("购票未成功");
-                    System.out.println("购票未成功!");
+                    log.error("购票未成功");
                     return ResponseVO.serviceFail("购票业务异常");
                 }else{
                     return ResponseVO.success(orderVO);
@@ -111,18 +117,20 @@ public class OrderController
         // 使用当前登陆人获取已经购买的订单
         Page<OrderVO> page = new Page<>(nowPage,pageSize);
         if(userId != null && userId.trim().length()>0){
+            Page<OrderVO> result2018 = orderServiceAPI2018.getOrderByUserId(Integer.parseInt(userId), page);
             Page<OrderVO> result = orderServiceAPI.getOrderByUserId(Integer.parseInt(userId), page);
 
             Page<OrderVO> result2017 = orderServiceAPI2017.getOrderByUserId(Integer.parseInt(userId), page);
 
-            System.out.println(result2017.getRecords()+" , "+result.getRecords());
+            log.error(result2017.getRecords()+" , "+result.getRecords());
 
             // 合并结果
             int totalPages = (int)(result.getPages() + result2017.getPages());
             // 2017和2018的订单总数合并
             List<OrderVO> orderVOList = new ArrayList<>();
-            orderVOList.addAll(result.getRecords());
+            orderVOList.addAll(result2018.getRecords());
             orderVOList.addAll(result2017.getRecords());
+            orderVOList.addAll(result.getRecords());
 
             return ResponseVO.success(nowPage,totalPages,"",orderVOList);
 
@@ -130,6 +138,7 @@ public class OrderController
             return ResponseVO.serviceFail("用户未登陆");
         }
     }
+
 
 }
 

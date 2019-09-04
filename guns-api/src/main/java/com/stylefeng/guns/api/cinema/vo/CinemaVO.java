@@ -7,8 +7,18 @@ public class CinemaVO implements Serializable {
     private static final long serialVersionUID = -306739461880517743L;
     private String uuid;
     private String cinemaName;
-    private String address;
+    private String cinemaAddress;
     private String minimumPrice;
+
+    public String getCinemaAddress()
+    {
+        return cinemaAddress;
+    }
+
+    public void setCinemaAddress(String cinemaAddress)
+    {
+        this.cinemaAddress = cinemaAddress;
+    }
 
     public static long getSerialVersionUID()
     {
@@ -33,16 +43,6 @@ public class CinemaVO implements Serializable {
     public void setCinemaName(String cinemaName)
     {
         this.cinemaName = cinemaName;
-    }
-
-    public String getAddress()
-    {
-        return address;
-    }
-
-    public void setAddress(String address)
-    {
-        this.address = address;
     }
 
     public String getMinimumPrice()

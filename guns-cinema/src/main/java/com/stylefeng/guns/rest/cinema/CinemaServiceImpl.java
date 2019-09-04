@@ -20,7 +20,7 @@ import java.util.List;
  **/
 
 @Component
-@Service(interfaceClass = CinemaServiceAPI.class,executes = 10)
+@Service(interfaceClass = CinemaServiceAPI.class)
 public class CinemaServiceImpl implements CinemaServiceAPI
 {
     @Autowired
@@ -66,7 +66,7 @@ public class CinemaServiceImpl implements CinemaServiceAPI
             cinemaVO.setUuid(cinemaT.getUuid()+"");
             cinemaVO.setMinimumPrice(cinemaT.getMinimumPrice()+"");
             cinemaVO.setCinemaName(cinemaT.getCinemaName());
-            cinemaVO.setAddress(cinemaT.getCinemaAddress());
+            cinemaVO.setCinemaAddress(cinemaT.getCinemaAddress());
             cinemas.add(cinemaVO);
         }
 

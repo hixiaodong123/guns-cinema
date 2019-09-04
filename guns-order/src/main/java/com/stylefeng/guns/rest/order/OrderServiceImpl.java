@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderServiceAPI
     public boolean isTrueSeats(String fieldId, String seats)
     {
         // 根据FieldId找到对应的座位位置图
-        String seatPath = orderMapper.getSeatsByFieldId(fieldId);
+        //String seatPath = orderMapper.getSeatsByFieldId(fieldId);
 
         // 读取位置图，判断seats是否为真
         //String fileStrByAddress = ftpUtil.getFileStrByAddress(seatPath);
@@ -51,6 +51,7 @@ public class OrderServiceImpl implements OrderServiceAPI
         //JSONObject jsonObject = JSONObject.parseObject(fileStrByAddress);
         // seats=1,2,3   ids="1,3,4,5,6,7,88"
         //String ids = jsonObject.get("ids").toString();
+        String ids = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24";
 
         // 每一次匹配上的，都给isTrue+1
         String[] seatArrs = seats.split(",");

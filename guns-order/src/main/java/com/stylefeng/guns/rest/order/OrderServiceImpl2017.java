@@ -1,9 +1,7 @@
-/*
 package com.stylefeng.guns.rest.order;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.api.cinema.CinemaServiceAPI;
@@ -34,8 +32,6 @@ public class OrderServiceImpl2017 implements OrderServiceAPI
     @Reference(interfaceClass = CinemaServiceAPI.class, check = false)
     private CinemaServiceAPI cinemaServiceAPI;
 
-    @Autowired
-    private FTPUtil ftpUtil;
 
     // 验证是否为真实的座位编号
     @Override
@@ -44,13 +40,18 @@ public class OrderServiceImpl2017 implements OrderServiceAPI
         // 根据FieldId找到对应的座位位置图
         String seatPath = order2017Mapper.getSeatsByFieldId(fieldId);
 
-        // 读取位置图，判断seats是否为真
-        String fileStrByAddress = ftpUtil.getFileStrByAddress(seatPath);
+        //// 读取位置图，判断seats是否为真
+        //String fileStrByAddress = ftpUtil.getFileStrByAddress(seatPath);
+        //
+        //// 将fileStrByAddress转换为JSON对象
+        //JSONObject jsonObject = JSONObject.parseObject(fileStrByAddress);
+        //// seats=1,2,3   ids="1,3,4,5,6,7,88"
+        //String ids = jsonObject.get("ids").toString();
 
-        // 将fileStrByAddress转换为JSON对象
-        JSONObject jsonObject = JSONObject.parseObject(fileStrByAddress);
-        // seats=1,2,3   ids="1,3,4,5,6,7,88"
-        String ids = jsonObject.get("ids").toString();
+        //假座位表
+
+        String ids = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24";
+
 
         // 每一次匹配上的，都给isTrue+1
         String[] seatArrs = seats.split(",");
@@ -209,13 +210,12 @@ public class OrderServiceImpl2017 implements OrderServiceAPI
     }
 
     // 根据放映查询，获取所有的已售座位
-    */
 /*
 
         1  1,2,3,4
         1  5,6,7
 
-     *//*
+     */
 
     @Override
     public String getSoldSeatsByFieldId(Integer fieldId)
@@ -231,4 +231,3 @@ public class OrderServiceImpl2017 implements OrderServiceAPI
         }
     }
 }
-*/

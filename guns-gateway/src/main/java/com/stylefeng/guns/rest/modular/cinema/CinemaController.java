@@ -21,10 +21,10 @@ import java.util.List;
 public class CinemaController
 {
 
-    @Reference(interfaceClass = CinemaServiceAPI.class, connections = 10, cache = "lru", check = false)
+    @Reference(interfaceClass = CinemaServiceAPI.class, check = false)
     private CinemaServiceAPI cinemaServiceAPI;
 
-    @Reference(interfaceClass = OrderServiceAPI.class, check = false)
+    @Reference(interfaceClass = OrderServiceAPI.class, check = false,group = "default")
     private OrderServiceAPI orderServiceAPI;
 
     private static final String IMG_PRE = "http://img.meetingshop.cn/";
@@ -120,7 +120,7 @@ public class CinemaController
             FilmInfoVO filmInfoByFieldId = cinemaServiceAPI.getFilmInfoByFieldId(fieldId);
             HallInfoVO filmFieldInfo = cinemaServiceAPI.getFilmFieldInfo(fieldId);
 
-            // 造几个销售的假数据，后续会对接订单接口
+            // 对接订单接口
             filmFieldInfo.setSoldSeats(orderServiceAPI.getSoldSeatsByFieldId(fieldId));
 
             CinemaFieldResponseVO cinemaFieldResponseVO = new CinemaFieldResponseVO();

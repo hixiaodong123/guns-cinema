@@ -24,4 +24,10 @@ public class CurrentUser
         return THREAD_LOCAL.get();
     }
 
+    //销毁
+    public static void destroy()
+    {
+        THREAD_LOCAL.remove();
+    }
+
 }
