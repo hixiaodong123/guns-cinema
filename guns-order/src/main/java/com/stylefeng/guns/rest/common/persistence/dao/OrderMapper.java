@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.api.order.vo.OrderVO;
 import com.stylefeng.guns.rest.common.persistence.model.Order;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -28,4 +29,6 @@ public interface OrderMapper extends BaseMapper<Order>
 
     String getSoldSeatsByFieldId(@Param("fieldId")Integer fieldId);
 
+    @Update("UPDATE mooc_order_t SET order_status = #{orderStatus} WHERE UUID = #{uuid}")
+    Integer updateByIdMy(Order order);
 }

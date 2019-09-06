@@ -21,6 +21,7 @@
         <module>guns-cinema</module>
         <module>guns-pay</module>
         <module>guns-promo</module>
+        <module>guns-alipay</module>
     </modules>
 
     <parent>

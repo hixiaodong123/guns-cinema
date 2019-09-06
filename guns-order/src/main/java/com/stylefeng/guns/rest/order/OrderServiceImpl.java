@@ -1,9 +1,7 @@
-
 package com.stylefeng.guns.rest.order;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.api.cinema.CinemaServiceAPI;
@@ -29,7 +27,7 @@ import java.util.List;
  **/
 
 @Component
-@Service(interfaceClass = OrderServiceAPI.class,group = "default")
+@Service(interfaceClass = OrderServiceAPI.class, group = "default")
 public class OrderServiceImpl implements OrderServiceAPI
 {
     @Reference(interfaceClass = CinemaServiceAPI.class, check = false)
@@ -130,6 +128,7 @@ public class OrderServiceImpl implements OrderServiceAPI
         int solds = soldSeats.split(",").length;
         double totalPrice = getTotalPrice(solds, filmPrice);
 
+
         Order order = new Order();
         order.setUuid(uuid);
         order.setSeatsName(seatsName);
@@ -226,5 +225,49 @@ public class OrderServiceImpl implements OrderServiceAPI
         {
             return orderMapper.getSoldSeatsByFieldId(fieldId);
         }
+    }
+
+
+    @Override
+    public boolean paySuccess(String orderId)
+    {
+        Order order = new Order();
+        order.setUuid(orderId);
+        order.setOrderStatus(1);
+
+        Integer integer = orderMapper.updateByIdMy(order);
+        if (integer >= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean payFail(String orderId)
+    {
+        Order order = new Order();
+        order.setUuid(orderId);
+        order.setOrderStatus(2);
+
+        Integer integer = orderMapper.updateByIdMy(order);
+        if (integer >= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    @Override
+    public OrderVO getOrderInfoById(String orderId)
+    {
+
+        return orderMapper.getOrderInfoById(orderId);
     }
 }

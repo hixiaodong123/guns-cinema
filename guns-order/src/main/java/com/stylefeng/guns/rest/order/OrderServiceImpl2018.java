@@ -226,4 +226,25 @@ public class OrderServiceImpl2018 implements OrderServiceAPI
             return order2018Mapper.getSoldSeatsByFieldId(fieldId);
         }
     }
+
+
+
+    //该部分支付默认未实现
+    @Override
+    public boolean paySuccess(String orderId)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean payFail(String orderId)
+    {
+        return false;
+    }
+
+    @Override
+    public OrderVO getOrderInfoById(String orderId)
+    {
+        return null;
+    }
 }

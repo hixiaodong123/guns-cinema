@@ -11,6 +11,7 @@ import com.stylefeng.guns.api.order.OrderServiceAPI;
 import com.stylefeng.guns.api.order.vo.OrderVO;
 import com.stylefeng.guns.core.util.UUIDUtil;
 import com.stylefeng.guns.rest.common.persistence.dao.Order2017Mapper;
+import com.stylefeng.guns.rest.common.persistence.model.Order;
 import com.stylefeng.guns.rest.common.persistence.model.Order2017;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -230,4 +231,27 @@ public class OrderServiceImpl2017 implements OrderServiceAPI
             return order2017Mapper.getSoldSeatsByFieldId(fieldId);
         }
     }
+
+
+
+    //该部分支付默认未实现
+    @Override
+    public boolean paySuccess(String orderId)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean payFail(String orderId)
+    {
+        return false;
+    }
+
+    @Override
+    public OrderVO getOrderInfoById(String orderId)
+    {
+        return null;
+    }
+
+
 }

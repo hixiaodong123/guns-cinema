@@ -5,7 +5,8 @@ import com.stylefeng.guns.api.order.vo.OrderVO;
 
 import java.util.List;
 
-public interface OrderServiceAPI {
+public interface OrderServiceAPI
+{
 
     // 验证售出的票是否为真
     boolean isTrueSeats(String fieldId, String seats);
@@ -21,5 +22,12 @@ public interface OrderServiceAPI {
 
     // 根据FieldId 获取所有已经销售的座位编号
     String getSoldSeatsByFieldId(Integer fieldId);
+
+    boolean paySuccess(String orderId);
+
+    boolean payFail(String orderId);
+
+    OrderVO getOrderInfoById(String orderId);
+
 
 }

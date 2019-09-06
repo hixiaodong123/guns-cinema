@@ -3,6 +3,7 @@ package com.stylefeng.guns.rest.common.persistence.model;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
 
@@ -75,92 +76,118 @@ public class Order extends Model<Order> {
     @TableField("order_status")
     private Integer orderStatus;
 
+    public static long getSerialVersionUID()
+    {
+        return serialVersionUID;
+    }
 
-    public String getUuid() {
+    public String getUuid()
+    {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(String uuid)
+    {
         this.uuid = uuid;
     }
 
-    public Integer getCinemaId() {
+    public Integer getCinemaId()
+    {
         return cinemaId;
     }
 
-    public void setCinemaId(Integer cinemaId) {
+    public void setCinemaId(Integer cinemaId)
+    {
         this.cinemaId = cinemaId;
     }
 
-    public Integer getFieldId() {
+    public Integer getFieldId()
+    {
         return fieldId;
     }
 
-    public void setFieldId(Integer fieldId) {
+    public void setFieldId(Integer fieldId)
+    {
         this.fieldId = fieldId;
     }
 
-    public Integer getFilmId() {
+    public Integer getFilmId()
+    {
         return filmId;
     }
 
-    public void setFilmId(Integer filmId) {
+    public void setFilmId(Integer filmId)
+    {
         this.filmId = filmId;
     }
 
-    public String getSeatsIds() {
+    public String getSeatsIds()
+    {
         return seatsIds;
     }
 
-    public void setSeatsIds(String seatsIds) {
+    public void setSeatsIds(String seatsIds)
+    {
         this.seatsIds = seatsIds;
     }
 
-    public String getSeatsName() {
+    public String getSeatsName()
+    {
         return seatsName;
     }
 
-    public void setSeatsName(String seatsName) {
+    public void setSeatsName(String seatsName)
+    {
         this.seatsName = seatsName;
     }
 
-    public Double getFilmPrice() {
+    public Double getFilmPrice()
+    {
         return filmPrice;
     }
 
-    public void setFilmPrice(Double filmPrice) {
+    public void setFilmPrice(Double filmPrice)
+    {
         this.filmPrice = filmPrice;
     }
 
-    public Double getOrderPrice() {
+    public Double getOrderPrice()
+    {
         return orderPrice;
     }
 
-    public void setOrderPrice(Double orderPrice) {
+    public void setOrderPrice(Double orderPrice)
+    {
         this.orderPrice = orderPrice;
     }
 
-    public Date getOrderTime() {
+    public Date getOrderTime()
+    {
         return orderTime;
     }
 
-    public void setOrderTime(Date orderTime) {
+    public void setOrderTime(Date orderTime)
+    {
         this.orderTime = orderTime;
     }
 
-    public Integer getOrderUser() {
+    public Integer getOrderUser()
+    {
         return orderUser;
     }
 
-    public void setOrderUser(Integer orderUser) {
+    public void setOrderUser(Integer orderUser)
+    {
         this.orderUser = orderUser;
     }
 
-    public Integer getOrderStatus() {
+    public Integer getOrderStatus()
+    {
         return orderStatus;
     }
 
-    public void setOrderStatus(Integer orderStatus) {
+    public void setOrderStatus(Integer orderStatus)
+    {
         this.orderStatus = orderStatus;
     }
 
